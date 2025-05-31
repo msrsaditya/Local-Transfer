@@ -1,5 +1,5 @@
 # Local-Transfer
-The fastest way to transfer files over a local network. Speeds are rate limited by physics and common sense.
+The fastest way to transfer files over a local network. Speeds are rate-limited by physics and common sense™.
 
 ## Usage
 
@@ -7,8 +7,6 @@ The fastest way to transfer files over a local network. Speeds are rate limited 
 ```bash
 bash get.sh "/path/to/folder"
 ```
-
-For example
 ```bash
 bash get.sh "~/storage/shared/Download/"
 ```
@@ -17,8 +15,6 @@ bash get.sh "~/storage/shared/Download/"
 ```bash
 bash send.sh "/path/to/file[OR]folder/" <IP_ADDRESS>
 ```
-
-For example
 ```bash
 bash send.sh "~/Documents/file.pdf" 192.168.29.14
 ```
@@ -36,6 +32,18 @@ bash send.sh "~/Documents/file.pdf" 192.168.29.14
 - The 5% overhead compared to iPerf3 is the unavoidable overhead from TCP and other tools, such as tar, pv, and bash.
 - This is as good as it can get. We're testing the limits of physics here.
 - Fun question: Why use ethernet? You're getting 90% of ethernet speeds wirelessly. Ethernet is for losers :p
+
+# Proofs
+![](Proof.png)
+- We sometimes also achieve <54 seconds too (but rare).
+- If we transferred 5.53GB in 0:00:54 then our speed is rough ~105 MBps, this is ~97% of max iPerf speeds, ~91% of practical ethernet speeds, and ~84% of theoretical gigabit network speeds! Isn't this awesome?
+- We always get 90% of ethernet speeds and we get to keep our convenience too. This is so cool!
+- All of this within 44 LoC of pure shell.
+
+# Testing
+- I tested this on my [2022 MacBook Air](https://support.apple.com/en-in/111867) as the sender and my 4-year-old [Realme GT Master Edition](https://www.gsmarena.com/realme_gt_master-11001.php) Android phone as the receiver (using Termux).
+- My hardware is relatively old and doesn't represent the cutting edge. Better hardware (for modern NIC) and modern standards (Wi-Fi 7) will yield even better results.
+- Physics is the limit. The software is as optimized as it can possibly get while remaining as simple as it can possibly be.
 
 # Tradeoffs
 
@@ -55,7 +63,7 @@ bash send.sh "~/Documents/file.pdf" 192.168.29.14
 9. Config files
 10. Logging
 
-and many many more.
+And many many more.
 
 - Only use this if you are ready to accept these tradeoffs.
 
