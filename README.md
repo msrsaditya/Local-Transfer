@@ -1,5 +1,5 @@
-# LocalTransfer
-The fastest way to transfer files among devices over a local network. Speeds are rate limited by physics and common sense.
+# Local-Transfer
+The fastest way to transfer files over a local network. Speeds are rate limited by physics and common sense.
 
 ## Usage
 
@@ -8,9 +8,19 @@ The fastest way to transfer files among devices over a local network. Speeds are
 bash get.sh "/path/to/folder"
 ```
 
+For example
+```bash
+bash get.sh "~/storage/shared/Download/"
+```
+
 ### Sender
 ```bash
 bash send.sh "/path/to/file[OR]folder/" <IP_ADDRESS>
+```
+
+For example
+```bash
+bash send.sh "~/Documents/file.pdf" 192.168.29.14
 ```
 
 - To share files to and from your smartphone, install and set up Termux with these scripts.
@@ -31,7 +41,7 @@ bash send.sh "/path/to/file[OR]folder/" <IP_ADDRESS>
 
 - Many features have been intentionally removed to reduce the overhead of the file transfer as much as possible.
 - The code itself is very optimized and lean.
-- Time and space complexity reveals everything is O(1) except for network and disk which are unavoidably O(n).
+- Time and space complexity analysis tells us that everything is O(1) except for network and disk which are unavoidably O(n).
 - Removed/Avoided features:
 
 1. Authentication & Authorization
