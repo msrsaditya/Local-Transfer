@@ -9,7 +9,7 @@ port=64943
 flags=(-f -b -t -r -a -p -i 0.5 -e --si)
 
 if [[ ! -e "${path}" ]]; then
-  echo "Error: File Not Found => ${path}" >&2
+  echo "Error: Path Not Found => ${path}" >&2
   exit 1
 fi
 
@@ -18,38 +18,26 @@ if ! [[ "${ip}" =~ ^[0-9.]+$ ]]; then
   exit 1
 fi
 
-basepath=$(basename "${path}")
+lastpart=$(basename "${path}")
 
 if [[ -d "${path}" ]]; then
-  dirpath=$(dirname "${path}")
-  filename=""
-  
   size=$(du -sk "${path}")
   bytes=${size%%[[:space:]]*}
   bytes=$((bytes * 1024))
-  
+
+  parentdir=$(dirname "${path}")
   stream() {
-    tar --exclude='._*' --exclude='.DS_Store' -cpf - \
-      -C "${dirpath}" \
-      "${basepath}"
+    printf "\n"
+    tar --exclude='._*' --exclude='.DS_Store' -cpf - -C "${parentdir}" "${lastpart}"
   }
 
 else
-  filename="${basepath}"
-  
-  if [[ "${filename}" != "${filename##*/}" ]] || [[ "${filename}" =~ \.\./ ]]; then
-    echo "Error: Invalid Filename => ${filename}" >&2
-    exit 1
-  fi
-  
   bytes=$(stat -f%z "${path}")
   
   stream() {
+    printf "%s\n" "${lastpart}"
     cat "${path}"
   }
 fi
 
-{
-  printf "%s\n%s\n" "${filename}" "${bytes}"
-  stream | pv "${flags[@]}" -s "${bytes}"
-} | nc "${ip}" "${port}"
+stream | pv "${flags[@]}" -s "${bytes}" | nc "${ip}" "${port}"
