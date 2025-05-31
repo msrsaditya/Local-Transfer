@@ -9,7 +9,7 @@ mkdir -p "${folder}"
 nc -l -w 60 "${port}" | {
   IFS= read -r file
   if [[ -z "${file}" ]]; then
-    tar --no-same-owner --warning=no-unknown-keyword -xpf - -C "${folder}"
+    tar --no-same-owner -xpf - -C "${folder}"
   else
     cat > "${folder}/${file}"
   fi
