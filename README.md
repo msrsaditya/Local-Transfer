@@ -44,6 +44,7 @@ bash send.sh "/path/to/file[OR]folder/" <IP_ADDRESS>
 8. Extensive error handling
 9. Config files
 10. Logging
+
 and many many more.
 
 - Only use this if you are ready to accept these tradeoffs.
