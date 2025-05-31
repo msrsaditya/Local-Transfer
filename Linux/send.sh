@@ -22,7 +22,7 @@ if [[ -d "${path}" ]]; then
   size=$(du -sb "${path}")
   bytes=${size%%[[:space:]]*}
 
-  parentdir=$(dirname "${path}")  
+  parentdir=$(dirname "${path}")
   stream() {
     printf "\n"
     tar --exclude='._*' --exclude='.DS_Store' -cpf - -C "${parentdir}" "${lastpart}"

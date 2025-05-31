@@ -28,7 +28,7 @@ bash send.sh "~/Documents/file.pdf" 192.168.29.14
 
 # Benchmarks
 
-- One can consistently get >103 MBps under "ideal" conditions with these scripts on a gigabit network.
+- We can consistently get >103 MBps under "ideal" conditions with these scripts on a gigabit network.
 - This is >95% of iPerf3 speeds (106-108 MBps) on the same device under the same conditions.
 - This is >90% of modern ethernet speeds (110-115 MBps).
 - This is >82% of the theoretical maximum speeds (125 MBps) of the gigabit network itself.
