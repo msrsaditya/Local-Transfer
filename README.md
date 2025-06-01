@@ -19,8 +19,10 @@ bash send.sh "/path/to/file[OR]folder/" <IP_ADDRESS>
 bash send.sh "~/Documents/file.pdf" 192.168.29.14
 ```
 
+### Tips
+
 - To share files to and from your smartphone, install and set up Termux with these scripts.
-- TIP: Use your smartphone hotspot while running the script as routers are usually slow.
+- Use your smartphone hotspot while running the script as routers are usually slow.
 - You can add these scripts as your alias in bashrc/zshrc and just write get and send.
 
 # Benchmarks
