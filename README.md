@@ -1,5 +1,5 @@
 # Local-Transfer
-The fastest way to transfer files over a local network.
+The simplest way to transfer files over a local network.
 
 ## Usage
 
@@ -37,18 +37,17 @@ bash send.sh "~/Documents/file.pdf" 192.168.29.14
 ![](Proof.png)
 - We sometimes also achieve <54 seconds too (but rare).
 - If we transferred 5.53GB in 0:00:54 then our speed is rough ~105 MBps, this is ~97% of max iPerf speeds, ~91% of practical ethernet speeds, and ~84% of theoretical gigabit network speeds!
-- All of this within 44 LoC of pure shell.
+- The code is very lean; 44 lines of shell code.
 
 # Testing
 - I tested this on my [2022 MacBook Air](https://support.apple.com/en-in/111867) as the sender and my 4-year-old [Realme GT Master Edition](https://www.gsmarena.com/realme_gt_master-11001.php) Android phone as the receiver (using Termux).
 - My hardware is relatively old and doesn't represent the cutting edge. Better hardware (for modern NIC) and modern standards (for Wi-Fi 7 or better) will yield even better results.
-- Network stack is the limit. The software is as optimized as it can possibly get while remaining as simple as it can possibly be.
 
 # Tradeoffs
 
 - Many features have been intentionally removed to reduce the overhead of the file transfer as much as possible.
 - The code itself is very optimized and lean.
-- Time and space complexity analysis tells us that everything is O(1) except for network and disk related operations which are unavoidably O(n).
+- Time and space complexity is unavoidably O(n)
 - Removed/Avoided features:
 
 1. Authentication & Authorization
