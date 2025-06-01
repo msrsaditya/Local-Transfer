@@ -41,7 +41,7 @@ bash send.sh "~/Documents/file.pdf" 192.168.29.14
 
 # Testing
 - I tested this on my [2022 MacBook Air](https://support.apple.com/en-in/111867) as the sender and my 4-year-old [Realme GT Master Edition](https://www.gsmarena.com/realme_gt_master-11001.php) Android phone as the receiver (using Termux).
-- My hardware is relatively old and doesn't represent the cutting edge. Better hardware (for modern NIC) and modern standards (Wi-Fi 7) will yield even better results.
+- My hardware is relatively old and doesn't represent the cutting edge. Better hardware (for modern NIC) and modern standards (for Wi-Fi 7 or better) will yield even better results.
 - Network stack is the limit. The software is as optimized as it can possibly get while remaining as simple as it can possibly be.
 
 # Tradeoffs
