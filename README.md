@@ -1,6 +1,12 @@
 # Local-Transfer
 The simplest way to transfer files over a local network.
 
+## Installation
+- pv is the only dependency
+- Make sure to install the latest version (pv 1.9.31)
+- macOS's Homebrew and Termux's pkg both provide this latest version but if you're on Debian/Ubuntu/Linux Mint, you will get an older version, in which case you need to build from the source
+- [OR] you can omit the --si flag from pv in send.sh
+
 ## Usage
 
 ### Receiver
@@ -32,6 +38,7 @@ bash send.sh "~/Documents/file.pdf" 192.168.29.14
 - This is >90% of modern ethernet speeds (110-115 MBps).
 - This is >82% of the theoretical maximum speeds (125 MBps) of the gigabit network itself.
 - The 5% overhead compared to iPerf3 is the unavoidable overhead from TCP and other tools, such as tar, pv, and bash.
+- Note: If you get very low speeds that doesn't mean the scripts are bad, it means you need to upgrade your hardware.
 
 # Proofs
 ![](Proof.png)
