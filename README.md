@@ -79,6 +79,20 @@ And many many more.
 - For context, if we transfer a 100 GB file (a file so big that most people won't transfer usually), then it would take 
 16.57 minutes with 103 MBps (our script) compared to 13.65 minutes with 125 MBps (theoretical limit).
 - This means we'll roughly save around ~3 minutes at max on a very massive file occasionally at best. Note that this much savings can never be achieved, because 125 MBps is impossible practically. It is the max that we can achieve, that's all (Not worth it IMHO).
+- However, if you still want to do all of these micro-optimizations though, there's a Program.c file in the repo.
+- Compile it with
+```bash
+clang Program.c
+```
+- And run
+```
+./a.out s /path/to/file
+```
+```
+./a.out 192.168.29.194 /filename/to/saveas
+```
+- The extreme optimization approach results in unreliable transfers most of the time. Also, there's no progress bar or timeout, so watch out :)
+- It works when it works, but when it does, it results in extremely fast speeds.
 
 # Workflow
 ![](Diagram.svg)
