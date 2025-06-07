@@ -79,12 +79,14 @@ And many many more.
 - For context, if we transfer a 100 GB file (a file so big that most people won't transfer usually), then it would take 
 16.57 minutes with 103 MBps (our script) compared to 13.65 minutes with 125 MBps (theoretical limit).
 - This means we'll roughly save around ~3 minutes at max on a very massive file occasionally at best. Note that this much savings can never be achieved, because 125 MBps is impossible practically. It is the max that we can achieve, that's all (Not worth it IMHO).
-- ### Why The Gap Narrows with larger file sizes:
+
+- ### Why The Gap Narrows with Larger File Sizes:
 
 1. **Network becomes bottleneck**: Even on gigabit, you're using ~90-95% of available bandwidth
 2. **CPU overhead becomes negligible**: A few extra milliseconds per MB doesn't matter over ~13+ minutes
 3. **Memory efficiency less critical**: The extra ~40MB RAM usage is insignificant
 4. **Progress monitoring becomes valuable**: You actually want to see progress on a 15-minute transfer
+
 - However, if you still want to do all of these micro-optimizations though, there's a Program.c file in the repo.
 - Compile it with
 ```bash
