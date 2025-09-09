@@ -9,7 +9,7 @@ mkdir -p "${folder}"
 nc -l -w 60 "${port}" | {
   IFS= read -r file
   if [[ -z "${file}" ]]; then
-    tar --no-same-owner -xpf - -C "${folder}"
+    tar --no-same-owner --blocking-factor=8192 -xpf - -C "${folder}"
   else
     cat > "${folder}/${file}"
   fi
