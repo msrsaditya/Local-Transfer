@@ -31,7 +31,6 @@ if [[ -d "${path}" ]]; then
     printf "\n"
     tar --blocking-factor=8192 ${exclude} -cpf - -C "${parentdir}" "${lastpart}"
   }
-
 else
   bytes=$(stat -f%z "${path}")
   
