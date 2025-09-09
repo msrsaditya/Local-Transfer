@@ -2,11 +2,12 @@
 set -euo pipefail
 
 export COPYFILE_DISABLE=1
+exclude="--exclude='._*' --exclude='.DS_Store'"
 
 path="${1}"
 ip="${2}"
 port=64943
-flags=(-f -b -t -r -a -p -i 0.5 -e --si)
+flags=(-f -b -t -r -a -p -i 0.5 -e --si -B 8M)
 
 if [[ ! -e "${path}" ]]; then
   echo "Error: Path Not Found => ${path}" >&2
@@ -28,7 +29,7 @@ if [[ -d "${path}" ]]; then
   parentdir=$(dirname "${path}")
   stream() {
     printf "\n"
-    tar --exclude='._*' --exclude='.DS_Store' -cpf - -C "${parentdir}" "${lastpart}"
+    tar --blocking-factor=8192 ${exclude} -cpf - -C "${parentdir}" "${lastpart}"
   }
 
 else
