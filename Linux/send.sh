@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-exclude="--exclude='._*' --exclude='.DS_Store'"
+exclude=(--exclude '._*' --exclude '.DS_Store')
 
 path="${1}"
 ip="${2}"
@@ -27,7 +27,7 @@ if [[ -d "${path}" ]]; then
   parentdir=$(dirname "${path}")
   stream() {
     printf "\n"
-    tar --blocking-factor=8192 ${exclude} -cpf - -C "${parentdir}" "${lastpart}"
+    tar --blocking-factor=8192 "${exclude[@]}" -cpf - -C "${parentdir}" "${lastpart}"
   }
 else
   bytes=$(stat -c%s "${path}")
