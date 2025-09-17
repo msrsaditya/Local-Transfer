@@ -2,9 +2,9 @@
 set -euo pipefail
 
 folder="${1:-${HOME}}"
-timeout=60
 port=64943
 blocks=8192
+timeout=60
 
 mkdir -p "${folder}"
 
