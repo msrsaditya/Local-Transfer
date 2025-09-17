@@ -2,14 +2,16 @@
 set -euo pipefail
 
 folder="${1:-${HOME}}"
+timeout=60
 port=64943
+blocks=8192
 
 mkdir -p "${folder}"
 
-nc -l -w 60 "${port}" | {
+nc -l -w "${timeout}" "${port}" | {
   IFS= read -r file
   if [[ -z "${file}" ]]; then
-    tar --no-same-owner --warning=no-unknown-keyword --blocking-factor=8192 -xpf - -C "${folder}"
+    tar --warning=no-unknown-keyword -b"${blocks}" -xpof- -C"${folder}"
   else
     cat > "${folder}/${file}"
   fi
