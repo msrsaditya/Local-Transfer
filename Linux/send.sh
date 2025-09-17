@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-exclude=(--exclude '._*' --exclude '.DS_Store')
-
 path="${1}"
 ip="${2}"
 port=64943
-flags=(-f -b -t -r -a -p -i 0.5 -e --si -B 8M)
+blocks=8192
+flags=(-f -b -t -r -a -p -i 0.5 -e -B 8M -k)
+exclude=(--exclude '._*' --exclude '.DS_Store')
 
 if [[ ! -e "${path}" ]]; then
   echo "Error: Path Not Found => ${path}" >&2
@@ -14,20 +14,19 @@ if [[ ! -e "${path}" ]]; then
 fi
 
 if ! [[ "${ip}" =~ ^[0-9.]+$ ]]; then
-  echo "Error: Invalid IP format => ${ip}" >&2
+  echo "Error: Invalid IP Format => ${ip}" >&2
   exit 1
 fi
 
 lastpart=$(basename "${path}")
 
 if [[ -d "${path}" ]]; then
-  size=$(du -sb "${path}")
-  bytes=${size%%[[:space:]]*}
+  bytes=$(du -sb "$path" | cut -f1)
 
   parentdir=$(dirname "${path}")
   stream() {
     printf "\n"
-    tar --blocking-factor=8192 "${exclude[@]}" -cpf - -C "${parentdir}" "${lastpart}"
+    tar "${exclude[@]}" -b"${blocks}" -cf- -C"${parentdir}" "${lastpart}"
   }
 else
   bytes=$(stat -c%s "${path}")
