@@ -5,7 +5,7 @@ path="${1}"
 ip="${2}"
 port=64943
 blocks=8192
-flags=(-f -b -t -r -a -p -i 0.5 -e -B 8M -k)
+flags=(-f -b -t -r -a -p -e -k -i 0.5 -B 8M)
 exclude=(--exclude '._*' --exclude '.DS_Store')
 
 if [[ ! -e "${path}" ]]; then
@@ -29,7 +29,8 @@ if [[ -d "${path}" ]]; then
     tar "${exclude[@]}" -b"${blocks}" -cf- -C"${parentdir}" "${lastpart}"
   }
 else
-  bytes=$(stat -c%s "${path}")
+  size=$(stat -c%s "${path}")
+  bytes=$((size + ${#lastpart} + 1))
   
   stream() {
     printf "%s\n" "${lastpart}"
